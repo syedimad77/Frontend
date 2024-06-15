@@ -1,0 +1,74 @@
+/* Style for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://d2vrvpw63099lz.cloudfront.net/whatsapp-bots/whatsapp-bots.png');
+    background-repeat: repeat;
+}
+
+/* Style for the login container */
+.container1 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form */
+form {
+    margin-top: 20px;
+}
+
+/* Style for the input fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Style for the error message */
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+/* Animation for the login container */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container1 {
+    animation: slideIn 0.5s ease;
+}

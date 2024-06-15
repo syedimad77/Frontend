@@ -1,0 +1,76 @@
+/* Add spinner styles */
+.spinner {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Container for input and button */
+  .input-container {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Styles for input field */
+  .input-field {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .input-field:focus {
+    border-color: #2c80b4;
+  }
+  
+  /* Styles for button */
+  .create-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .create-button1 {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .create-button:hover {
+    background-color: #2c80b4;
+  }
+  
+  /* General APP container styles */
+  .APP {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
