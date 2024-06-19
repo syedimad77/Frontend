@@ -108,12 +108,18 @@ const Message = () => {
             onChange={(e) => setFile(e.target.files[0])}
           />
         </div>
+        <input
+          type="file"
+          id="fileInput"
+          style={{ display: 'none' }}
+          onChange={handleFileChange}
+        />
         <div className="btn-box">
           <input type="submit" name="submit" id="submit" value="Send Message" />
         </div>
       </form>
     </div>
-  );
+  ); 
 }
 
 export default Message;
