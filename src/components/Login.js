@@ -13,7 +13,7 @@ const Login = () => {
         setError("");
   
         try {
-            const response = await fetch('http://localhost:3002/postlogin', {
+            const response = await fetch('https://wwebfrontback.onrender.com/postlogin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
