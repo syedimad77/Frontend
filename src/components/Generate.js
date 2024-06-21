@@ -4,7 +4,8 @@ import io from "socket.io-client";
 import { Link, useNavigate } from 'react-router-dom';
 import './Generate.css'; 
 
-const socket = io("http://localhost:3002");
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://wwebfrontback.onrender.com";
+const socket = io(backendUrl);
 
 const Generate = () => {
     const [session, setSession] = useState("");
@@ -46,8 +47,6 @@ const Generate = () => {
         });
     };
 
-   
-
     return (
         <div className='APP'>
             <h1>Open Whatsapp and Scan QR Code</h1>
@@ -61,7 +60,6 @@ const Generate = () => {
                 />
                 <div className='buttons'>
                     <button onClick={createSessionForWhatsapp} className="create-button">Create Session</button>
-                  
                     <Link to={"/message"}><button className='create-button1'>Existing session</button></Link>
                 </div>
             </div>
