@@ -7,6 +7,7 @@ const Message = () => {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
   const [importedCount, setImportedCount] = useState(0);
+  const [successMessageVisible, setSuccessMessageVisible] = useState(false);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -51,6 +52,10 @@ const Message = () => {
 
       if (response.ok) {
         console.log('Message sent successfully');
+        setSuccessMessageVisible(true);
+        setTimeout(() => {
+          setSuccessMessageVisible(false);
+        }, 3000); // Hide the popup after 3 seconds
       } else {
         console.log('Message sending failed');
       }
@@ -118,6 +123,11 @@ const Message = () => {
           <input type="submit" name="submit" id="submit" value="Send Message" />
         </div>
       </form>
+      {successMessageVisible && (
+        <div className="popup">
+          Messages sent successfully
+        </div>
+      )}
     </div>
   ); 
 }
