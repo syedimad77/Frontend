@@ -84,8 +84,6 @@ const Generate = () => {
             <h1>QR code</h1>
             {loading && <div className="spinner">Loading...</div>}
             {qrcode && !loading && <QRCode value={qrcode} />}
-            {authenticating && <div>Authenticating, please wait...</div>}
-            {error && <div className="error">{error}</div>}
         </div>
     )
 }
