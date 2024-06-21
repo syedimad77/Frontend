@@ -11,37 +11,46 @@ const Generate = () => {
     const [session, setSession] = useState("");
     const [qrcode, setQrCode] = useState("");
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate(); // Hook to navigate programmatically
+    const [authenticating, setAuthenticating] = useState(false);
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        // Emit connected event when component mounts
+        const timeout = setTimeout(() => {
+            if (authenticating) {
+                setError("Authentication is taking too long. Please try again.");
+                setAuthenticating(false);
+                setLoading(false);
+            }
+        }, 60000); // 60 seconds timeout
+
         socket.emit("connected", "Hello from imad");
 
-        // Listen for QR code event
         socket.on("qr", (data) => {
             console.log("QR code received:", data.qr);
             setQrCode(data.qr);
-            setLoading(false); // Stop loading when QR code is received
+            setLoading(false);
+            setAuthenticating(true);
         });
 
-        // Listen for ready event
         socket.on("ready", (data) => {
             console.log("Session is ready:", data);
-            navigate('/message'); // Navigate to the Message component
+            setAuthenticating(false);
+            clearTimeout(timeout); // Clear timeout if ready event is received in time
+            navigate('/message');
         });
 
-        // Listen for hello event
         socket.on("hello", (message) => {
             console.log(message);
         });
 
-        // Cleanup event listeners when component unmounts
         return () => {
             socket.off("qr");
             socket.off("hello");
             socket.off("ready");
+            clearTimeout(timeout);
         };
-    }, [navigate]);
+    }, [navigate, authenticating]);
 
     const createSessionForWhatsapp = () => {
         if (!session.trim()) {
@@ -49,9 +58,10 @@ const Generate = () => {
             return;
         }
         
-        setLoading(true); // Start loading when session is created
+        setLoading(true);
+        setError("");
         socket.emit("createSession", {
-            id: session.trim(), // Emit the session ID to create a new session
+            id: session.trim(),
         });
     };
 
@@ -72,7 +82,10 @@ const Generate = () => {
                 </div>
             </div>
             <h1>QR code</h1>
-            {loading ? <div className="spinner"></div> : qrcode && <QRCode value={qrcode} />}
+            {loading && <div className="spinner">Loading...</div>}
+            {qrcode && !loading && <QRCode value={qrcode} />}
+            {authenticating && <div>Authenticating, please wait...</div>}
+            {error && <div className="error">{error}</div>}
         </div>
     )
 }
