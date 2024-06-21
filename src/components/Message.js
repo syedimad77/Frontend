@@ -43,7 +43,7 @@ const Message = () => {
     headers.append("Accept", "application/json");
 
     try {
-      const response = await fetch('https://wwebfrontback.onrender.comsendmessage', {
+      const response = await fetch('https://wwebfrontback.onrender.com/sendmessage', {
         method: 'POST',
         headers: headers,
         body: formData,
