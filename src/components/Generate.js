@@ -14,8 +14,9 @@ const Generate = () => {
     const navigate = useNavigate(); // Hook to navigate programmatically
 
     useEffect(() => {
+        // Emit connected event when component mounts
         socket.emit("connected", "Hello from imad");
-    
+
         // Listen for QR code event
         socket.on("qr", (data) => {
             console.log("QR code received:", data.qr);
@@ -28,22 +29,29 @@ const Generate = () => {
             console.log("Session is ready:", data);
             navigate('/message'); // Navigate to the Message component
         });
-    
+
+        // Listen for hello event
         socket.on("hello", (message) => {
             console.log(message);
         });
-    
+
+        // Cleanup event listeners when component unmounts
         return () => {
             socket.off("qr");
             socket.off("hello");
             socket.off("ready");
         };
     }, [navigate]);
-    
+
     const createSessionForWhatsapp = () => {
+        if (!session.trim()) {
+            alert("Please enter a session ID.");
+            return;
+        }
+        
         setLoading(true); // Start loading when session is created
         socket.emit("createSession", {
-            id: session,
+            id: session.trim(), // Emit the session ID to create a new session
         });
     };
 
