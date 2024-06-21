@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import { Link, useNavigate } from 'react-router-dom';
 import './Generate.css'; 
 
-const socket = io("https://wwebfrontback.onrender.com");
+const socket = io("http://localhost:3002");
 
 const Generate = () => {
     const [session, setSession] = useState("");
