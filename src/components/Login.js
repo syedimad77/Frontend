@@ -13,7 +13,7 @@ const Login = () => {
         setError("");
   
         try {
-            const response = await fetch('https://wwebfrontback.onrender.com/postlogin', {
+            const response = await fetch('http://webchat.ap-south-1.elasticbeanstalk.com/postlogin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

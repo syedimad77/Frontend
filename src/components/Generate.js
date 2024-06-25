@@ -4,8 +4,11 @@ import io from "socket.io-client";
 import { Link, useNavigate } from 'react-router-dom';
 import './Generate.css'; 
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://wwebfrontback.onrender.com";
-const socket = io(backendUrl);
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://webchat.ap-south-1.elasticbeanstalk.com/";
+const socket = io(backendUrl, {
+    transports: ['websocket'], // Ensure WebSocket transport is used
+    withCredentials: true
+});
 
 const Generate = () => {
     const [session, setSession] = useState("");
@@ -44,10 +47,18 @@ const Generate = () => {
             console.log(message);
         });
 
+        socket.on("error", (error) => {
+            console.error("Socket error:", error);
+            setError(error.message || "An error occurred.");
+            setLoading(false);
+            setAuthenticating(false);
+        });
+
         return () => {
             socket.off("qr");
             socket.off("hello");
             socket.off("ready");
+            socket.off("error");
             clearTimeout(timeout);
         };
     }, [navigate, authenticating]);

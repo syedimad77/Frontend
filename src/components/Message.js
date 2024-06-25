@@ -44,7 +44,7 @@ const Message = () => {
     headers.append("Accept", "application/json");
 
     try {
-      const response = await fetch('https://wwebfrontback.onrender.com/sendmessage', {
+      const response = await fetch('http://webchat.ap-south-1.elasticbeanstalk.com/sendmessage', {
         method: 'POST',
         headers: headers,
         body: formData,
