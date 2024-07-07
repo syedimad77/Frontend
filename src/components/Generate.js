@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import { Link, useNavigate } from 'react-router-dom';
 import './Generate.css'; 
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://webchat.ap-south-1.elasticbeanstalk.com/";
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://wwebfrontback.onrender.com";
 const socket = io(backendUrl, {
     transports: ['websocket'], // Ensure WebSocket transport is used
     withCredentials: true
